@@ -1,0 +1,24 @@
+<?php
+$I = new AcceptanceTester($scenario);
+$I->wantTo('perform actions and see result');
+$I->amOnPage('/');
+$I->maximizeWindow();
+$I->wait(2);
+$I->click(['link' => 'Да, я тут']);
+$I->click(['link' => 'Вход']);
+$I->fillField('LOGIN', 'test_reg@yopmail.com');
+$I->fillField('PASSWORD', '123456');
+$I->click('Войти');
+$I->wait(2);
+$item_id1 = 'goods/id';
+$item_id2 = $I->grabAttributeFrom('//section/div[2]/div/div[2]/div', 'data-xml-id');
+$I->amOnPage($item_id1.$item_id2);
+$item_name = $I->grabTextFrom('h1');
+$I->click(['css' => 'a.offer-card__like']);
+$I->click(['link' => 'Личный кабинет']);
+$I->click(['xpath' => '//a[contains(@href, \'/personal/favourite/\')]']);
+$I->see($item_name);
+$I->click(['css' => 'a.cc-item--like.active.card__like--active.is-active']);
+$I->wait(2);
+$I->dontSee($item_name);
+$I->wait(2);

@@ -1,0 +1,21 @@
+<?php
+$I = new AcceptanceTester($scenario);
+$I->wantTo('perform actions and see result');
+$I->amOnPage('/');
+$I->maximizeWindow();
+$I->click(['link' => 'Да, я тут']);
+$I->amOnPage('goods/id327636');
+$I->waitForText('Комплексное решение', 10);
+$itemalso1 = $I->grabTextFrom('//a/div[2]/span');
+$itemalso2 = $I->grabTextFrom('//div[3]/a/div[2]/span');
+$I->click(['xpath' => '//div[3]/div/div/div/div[5]/a']);
+$I->see('В корзине', ['xpath' => '//div[5]/a[2]']);
+$I->waitForElement(['css' => 'a.header-basket.header--cart.is-active.animated'],10);
+$I->click(['css' => 'a.header-basket.header--cart.is-active.animated']);
+$I->wait(2);
+$I->see($itemalso1, '//div[@id=\'cart\']/div');
+$I->see($itemalso2, '//div[@id=\'cart\']/div');
+$I->click(['css' => 'a.sec-cart__table-clean.btn.grey.showPopup']);
+$I->click(['css' => 'a.btn.yellow.left.popups__close']);
+$I->waitForText('Ваша корзина пуста', 10);
+$I->wait(2);

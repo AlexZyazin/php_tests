@@ -1,0 +1,25 @@
+<?php
+$I = new AcceptanceTester($scenario);
+$I->wantTo('perform actions and see result');
+$I->amOnPage('/');
+$I->maximizeWindow();
+$I->click(['link' => 'Да, я тут']);
+$I->amOnPage('goods/drugs');
+$I->checkOption('//div[2]/div[2]/div/div/div[4]/label/i');
+$I->waitForElement(['css' => 'div.btn.btn-secondary.btn-xsm'],10);
+$I->click(['xpath' => '//section/div[2]/div']);
+$I->waitForElement(['css' => 'div.btn.btn-secondary.btn-xsm'],10);
+$uri = $I->grabFromCurrentUrl();
+$I->click(['css' => 'div.btn.btn-secondary.btn-xsm']);
+$I->waitForText('Скачать приложение', 10);
+$I->click(['xpath' => '//div[2]/a/img']);
+$I->waitForText('App Store', 10);
+$I->seeInCurrentUrl('/app/');
+$I->amOnPage($uri);
+$I->waitForElement(['css' => 'div.btn.btn-secondary.btn-xsm'],10);
+$I->click(['css' => 'div.btn.btn-secondary.btn-xsm']);
+$I->waitForText('Скачать приложение', 10);
+$I->click(['xpath' => '//a[2]/img']);
+$I->waitForText('Google', 10);
+$I->seeInCurrentUrl('/store/apps/');
+$I->wait(2);

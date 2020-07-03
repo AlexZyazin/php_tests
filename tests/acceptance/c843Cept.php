@@ -1,0 +1,20 @@
+<?php
+use \Codeception\Util\Locator;
+$I = new AcceptanceTester($scenario);
+$I->wantTo('perform actions and see result');
+$I->amOnPage('/');
+$I->maximizeWindow();
+$I->click(['link' => 'Да, я тут']);
+$I->amOnPage('goods/drugs');
+$I->waitForElement(['css' => 'p.cc-item--field.cc-item--field_analogs.text-description.text-description_strong.mb-2'],10);
+$itemalso = $I->grabTextFrom('p.cc-item--field.cc-item--field_analogs.text-description.text-description_strong.mb-2');
+$I->click(Locator::contains('div.cc-item--fields', 'аналог'));
+$I->waitForElement(['css' => 'div.cc-item--field.cc-item--field_analogs.btn.btn-primary.btn-xsm.mb-2'],10);
+$I->see($itemalso, 'div.cc-item--field.cc-item--field_analogs.btn.btn-primary.btn-xsm.mb-2');
+$I->click(['css' => 'div.cc-item--field.cc-item--field_analogs.btn.btn-primary.btn-xsm.mb-2']);
+$I->wait(2);
+preg_match_all('/[0-9]*[0-9]/', $itemalso,$m);
+$I->see($m[0][1], '//div[2]/div[2]/div/div/span');
+$I->see('Сначала дешевые', 'a.categories-sort__button');
+$I->seeNumberOfElements('a.btn.btn-success', $m[0][0]);
+$I->wait(2);
