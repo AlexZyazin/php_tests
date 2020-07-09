@@ -1,7 +1,7 @@
 <?php
 use \Codeception\Util\Locator;
 $I = new AcceptanceTester($scenario);
-$I->wantTo('perform actions and see result');
+$I->wantTo('Проверить даты у товаров "под заказ"');
 $I->amOnPage('/');
 $I->maximizeWindow();
 $I->click(['link' => 'Да, я тут']);
