@@ -8,8 +8,6 @@ class_name: AcceptanceTester
 modules:
     enabled:
         - WebDriver:
-                #url: 'https://eapteka:stage@release.eapteka.ru'
-                #url: 'https://eapteka:stage@stage.eapteka.ru'
                 url: 'https://eapteka.ru'
                 protocol: 'http'
                 host: 'localhost'
