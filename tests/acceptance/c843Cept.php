@@ -1,7 +1,7 @@
 <?php
 use \Codeception\Util\Locator;
 $I = new AcceptanceTester($scenario);
-$I->wantTo('perform actions and see result');
+$I->wantTo('Проверить отображение информации "аналог от _ руб"');
 $I->amOnPage('/');
 $I->maximizeWindow();
 $I->click(['link' => 'Да, я тут']);

@@ -33,3 +33,38 @@ $date_today = date("j");
 $I->dontSee($date_today, ['css' => 'div.sec-item__delivery-info-item.left-part']);
 $I->dontSee($date_today, ['css' => 'div.sec-item__delivery-info-item.right-part']);
 $I->wait(3);
+
+
+/**
+class SearchCest
+{
+private $HomePage;
+private $SearchPage;
+public function _before (FunctionalTester $I){
+$this->HomePage = new HomePage();
+$this->SearchPage = new SearchPage();
+}
+public function SearchCest(FunctionalTester $I)
+{
+$I->amOnPage('/');
+$I->fillField(HomePage::ITEM_FIELD, "нурофен");
+$I->click(HomePage::SUBMIT_BUTTON);
+$I->wait(2);
+$title=$I->grabTextFrom(SearchPage::SEARCH_TITLE);
+preg_match_all('/[0-9]*[0-9]/', $title,$m);
+$I->seeNumberOfElements(SearchPage::SEARCH_ITEM, $m[0][0]);
+}
+}
+
+use Page\Functional\HomePage;
+use Page\Functional\SearchPage;
+
+$I = new FunctionalTester($scenario);
+$I->wantTo('Найти нурофен и проверить количество найденныйх товаров');
+$I->amOnPage(HomePage::$URL);
+$I->fillField(HomePage::$itemField, "нурофен");
+$I->click(HomePage::$submitButton);
+$I->wait(2);
+preg_match_all('/[0-9]/', SearchPage::$searchTitle,$m);
+$I->seeNumberOfElements(SearchPage::$buyButton, $m[0][0]);
+ */
