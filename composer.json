@@ -1,8 +1,9 @@
 {
     "require-dev": {
-        "codeception/codeception": "4.1.0",
+        "codeception/codeception": "4.1.7",
         "codeception/module-phpbrowser": "^1.0.0",
         "codeception/module-asserts": "^1.1",
-        "ext-zip": "*"
+        "ext-zip": "*",
+        "codeception/module-webdriver": "^1.1"
     }
 }

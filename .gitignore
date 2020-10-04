@@ -1,7 +1,9 @@
 .idea
 *.iml
+_envs
 _generated
 _output
 screenshot.png
 vendor
 *.phar
+Config.php
